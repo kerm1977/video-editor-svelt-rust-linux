@@ -19,7 +19,7 @@
       title="{marker.label} — {formatTime(marker.time)} — click para borrar"
       on:click={() => removeMarker(marker.id)}
     >
-      <span class="arrow" style="border-color: {marker.color};"></span>
+      <span class="arrow" style="border-top-color: {marker.color};"></span>
       <span class="label">{marker.label}</span>
     </button>
   {/each}
@@ -33,7 +33,7 @@
     right: 0;
     bottom: 0;
     pointer-events: none;
-    z-index: 35;
+    z-index: 15;
   }
   .marker {
     position: absolute;
@@ -45,6 +45,7 @@
     background: transparent;
     border: none;
     padding: 0;
+    left: 0;
     margin-left: -8px;
   }
   .arrow {
