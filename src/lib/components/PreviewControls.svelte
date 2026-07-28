@@ -36,25 +36,25 @@
 <style>
   .controls {
     display: grid;
-    grid-template-columns: 1fr auto 1fr;
+    grid-template-columns: auto minmax(0, 1fr) auto;
     align-items: center;
-    gap: 10px;
-    padding: 7px 10px;
+    gap: 8px;
+    padding: 8px 12px;
     background: var(--bg-2);
     border-top: 1px solid var(--line);
   }
-  .controls > .row:first-child {
-    justify-self: start;
-  }
-  .controls > .row:last-child {
-    justify-self: end;
+  .controls > .row {
+    flex-wrap: wrap;
+    min-width: 0;
   }
   .time {
     display: flex;
+    justify-content: center;
     gap: 6px;
     align-items: baseline;
     font-variant-numeric: tabular-nums;
     font-size: 13px;
+    min-width: 0;
   }
   .time strong {
     color: var(--accent);

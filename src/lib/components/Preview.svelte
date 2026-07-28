@@ -46,6 +46,7 @@
     refit();
     observer = new ResizeObserver(refit);
     if (stage) observer.observe(stage);
+    requestAnimationFrame(refit);
   });
 
   onDestroy(() => {
@@ -105,14 +106,17 @@
 <style>
   .stage {
     flex: 1;
-    display: grid;
-    place-items: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     min-height: 0;
     padding: 12px;
+    overflow: hidden;
     background: radial-gradient(circle at 50% 40%, #16161a 0%, #0d0d0f 80%);
   }
   .canvas {
     position: relative;
+    flex: 0 0 auto;
     background: #000;
     border: 1px solid var(--line);
     box-shadow: 0 18px 50px rgba(0, 0, 0, 0.55);
