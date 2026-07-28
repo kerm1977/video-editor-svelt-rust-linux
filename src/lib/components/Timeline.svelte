@@ -2,6 +2,7 @@
   import TimelineRuler from './TimelineRuler.svelte';
   import TimelineTrack from './TimelineTrack.svelte';
   import Playhead from './Playhead.svelte';
+  import TimelineMarkers from './TimelineMarkers.svelte';
   import Toolbar from './Toolbar.svelte';
   import { pixelsPerSecond, playhead, timeline, timelineDuration } from '../editor/state';
   import { clearSelection } from '../editor/actions';
@@ -45,6 +46,7 @@
   >
     <div class="inner" style="width:{duration * $pixelsPerSecond + LABEL_W}px">
       <TimelineRuler {duration} labelWidth={LABEL_W} />
+      <TimelineMarkers labelWidth={LABEL_W} />
       {#each $timeline.tracks as track (track.id)}
         <TimelineTrack {track} {duration} labelWidth={LABEL_W} {snap} />
       {/each}

@@ -23,6 +23,8 @@ pub fn run() {
             commands::project::delete_project,
             commands::project::set_setting,
             commands::project::get_setting,
+            commands::project::save_project_file,
+            commands::project::load_project_file,
             commands::render::render_timeline,
         ])
         .run(tauri::generate_context!())

@@ -98,3 +98,17 @@ pub fn get_setting(db: State<Db>, key: String) -> AppResult<Option<String>> {
         .optional()?;
     Ok(value)
 }
+
+/// Guarda el contenido JSON del proyecto en un archivo externo.
+#[tauri::command]
+pub fn save_project_file(path: String, payload: String) -> AppResult<()> {
+    std::fs::write(path, payload)?;
+    Ok(())
+}
+
+/// Lee el contenido JSON del proyecto desde un archivo externo.
+#[tauri::command]
+pub fn load_project_file(path: String) -> AppResult<String> {
+    let payload = std::fs::read_to_string(path)?;
+    Ok(payload)
+}
