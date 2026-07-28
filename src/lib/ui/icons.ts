@@ -1,0 +1,41 @@
+/** Trazados SVG (stroke) con viewBox 0 0 24 24, estilo Lucide. */
+export const ICONS: Record<string, string> = {
+  play: 'M6 4l14 8-14 8z',
+  pause: 'M9 4v16M15 4v16',
+  stop: 'M6 6h12v12H6z',
+  skipStart: 'M18 5v14L7 12zM5 5v14',
+  skipEnd: 'M6 5v14l11-7zM19 5v14',
+  frameBack: 'M13 5l-7 7 7 7M19 5v14',
+  frameNext: 'M11 5l7 7-7 7M5 5v14',
+  cut: 'M6 3l12 12M18 3L6 15M8 18a3 3 0 11-3-3 3 3 0 013 3zM22 18a3 3 0 11-3-3 3 3 0 013 3z',
+  copy: 'M9 9h11v11H9zM5 15H4V4h11v1',
+  paste: 'M9 3h6v3H9zM7 5H5v16h14V5h-2',
+  trash: 'M4 7h16M9 7V4h6v3M7 7l1 14h8l1-14',
+  undo: 'M9 14L4 9l5-5M4 9h10a6 6 0 010 12h-3',
+  redo: 'M15 14l5-5-5-5M20 9H10a6 6 0 000 12h3',
+  duplicate: 'M8 8h12v12H8zM4 16V4h12',
+  zoomIn: 'M11 4a7 7 0 107 7 7 7 0 00-7-7zM16 16l5 5M11 8v6M8 11h6',
+  zoomOut: 'M11 4a7 7 0 107 7 7 7 0 00-7-7zM16 16l5 5M8 11h6',
+  grid: 'M3 9h18M3 15h18M9 3v18M15 3v18',
+  fit: 'M4 9V4h5M20 15v5h-5M15 4h5v5M9 20H4v-5',
+  film: 'M3 4h18v16H3zM7 4v16M17 4v16M3 9h4M3 15h4M17 9h4M17 15h4',
+  music: 'M9 18V5l10-2v13M9 18a3 3 0 11-3-3 3 3 0 013 3zM19 16a3 3 0 11-3-3 3 3 0 013 3z',
+  image: 'M3 5h18v14H3zM3 16l5-5 4 4 3-3 6 6',
+  sticker: 'M4 4h10l6 6v10H4zM14 4v6h6M8 13a3 3 0 006 0',
+  import: 'M12 3v12M7 10l5 5 5-5M4 20h16',
+  save: 'M5 3h11l3 3v15H5zM8 3v6h8V3M8 21v-6h8v6',
+  folder: 'M3 6h6l2 2h10v12H3z',
+  export: 'M12 21V9M7 14l5-5 5 5M4 4h16',
+  plus: 'M12 5v14M5 12h14',
+  eye: 'M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12zM12 9a3 3 0 100 6 3 3 0 000-6z',
+  eyeOff: 'M3 3l18 18M10 6a10 10 0 0112 6 15 15 0 01-3 3.5M6.5 7.5A15 15 0 002 12s4 7 10 7a10 10 0 004-.8',
+  lock: 'M6 11h12v9H6zM9 11V8a3 3 0 016 0v3',
+  unlock: 'M6 11h12v9H6zM9 11V8a3 3 0 015.9-.8',
+  volume: 'M4 9h4l5-4v14l-5-4H4zM17 9a4 4 0 010 6',
+  mute: 'M4 9h4l5-4v14l-5-4H4zM17 9l4 6M21 9l-4 6',
+  magnet: 'M6 4v8a6 6 0 0012 0V4h-4v8a2 2 0 01-4 0V4z',
+  settings:
+    'M12 9a3 3 0 100 6 3 3 0 000-6zM19.4 15a1.6 1.6 0 00.3 1.8l.1.1a2 2 0 11-2.8 2.8l-.1-.1a1.6 1.6 0 00-2.7 1.1V21a2 2 0 11-4 0v-.1A1.6 1.6 0 007.5 19l-.1.1a2 2 0 11-2.8-2.8l.1-.1A1.6 1.6 0 003 13.6H3a2 2 0 110-4h.1A1.6 1.6 0 004.6 7l-.1-.1a2 2 0 112.8-2.8l.1.1A1.6 1.6 0 0010 3.6V3a2 2 0 114 0v.1a1.6 1.6 0 002.7 1.1l.1-.1a2 2 0 112.8 2.8l-.1.1a1.6 1.6 0 001.1 2.7H21a2 2 0 110 4h-.1a1.6 1.6 0 00-1.5 1z'
+};
+
+export type IconName = keyof typeof ICONS;
