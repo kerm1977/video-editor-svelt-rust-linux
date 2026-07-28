@@ -13,18 +13,46 @@
     toggleGuides
   } from '../editor/preview';
   import { attachVideoElement } from '../editor/player';
-  import { assetUrl } from '../tauri/bridge';
+  import { mediaBlobUrl } from '../tauri/bridge';
 
   let stage: HTMLDivElement;
   let video: HTMLVideoElement | undefined;
   let failed = false;
+  let src = '';
+  let imgSrc = '';
+  let objectUrl: string | undefined;
 
   $: clip = $activeVideoClip;
   $: asset = clip ? $assets.find((a) => a.id === clip.assetId) : undefined;
-  $: src = asset?.inline ?? (asset?.path ? assetUrl(asset.path) : '');
-  $: if (src) failed = false;
+  $: if (asset) updateSrc(asset);
   $: attachVideoElement(video ?? null);
   $: if (video && clip) syncFrame(clip, $playhead);
+
+  const updateSrc = async (a: typeof asset) => {
+    if (objectUrl) {
+      URL.revokeObjectURL(objectUrl);
+      objectUrl = undefined;
+    }
+    src = '';
+    imgSrc = '';
+    failed = false;
+    if (!a) return;
+    if (a.inline) {
+      src = a.inline;
+      imgSrc = a.inline;
+      return;
+    }
+    if (!a.path) return;
+    try {
+      const url = await mediaBlobUrl(a.path);
+      objectUrl = url;
+      src = url;
+      imgSrc = url;
+    } catch (e) {
+      console.error('[preview] mediaBlobUrl failed', e);
+      failed = true;
+    }
+  };
 
   /** Alinea el fotograma mostrado con la posición global del cabezal. */
   const syncFrame = (activeClip: typeof clip, time: number) => {
@@ -52,6 +80,7 @@
   onDestroy(() => {
     attachVideoElement(null);
     observer?.disconnect();
+    if (objectUrl) URL.revokeObjectURL(objectUrl);
   });
 </script>
 
@@ -84,8 +113,8 @@
           on:loadedmetadata={() => clip && syncFrame(clip, $playhead)}
           on:error={() => (failed = true)}
         ></video>
-      {:else if asset && asset.kind !== 'video'}
-        <img src={asset.inline ?? assetUrl(asset.path)} alt={asset.name} />
+      {:else if asset && asset.kind !== 'video' && !failed}
+        <img src={imgSrc} alt={asset.name} on:error={() => (failed = true)} />
       {:else if failed && asset}
         <div class="empty">No se pudo decodificar <b>{asset.name}</b> en el visor</div>
       {:else}

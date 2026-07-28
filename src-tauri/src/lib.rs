@@ -17,6 +17,7 @@ pub fn run() {
             commands::media::extract_thumbnail,
             commands::media::extract_filmstrip,
             commands::media::ffmpeg_available,
+            commands::media::read_media_file,
             commands::project::save_project,
             commands::project::load_project,
             commands::project::list_projects,

@@ -80,3 +80,14 @@ pub async fn extract_filmstrip(path: String, count: u32, duration: f64) -> AppRe
 pub fn ffmpeg_available() -> bool {
     ffmpeg::is_available()
 }
+
+/// Lee un archivo multimedia y lo devuelve como base64 para crear un blob en el frontend.
+#[tauri::command]
+pub async fn read_media_file(path: String) -> AppResult<String> {
+    tauri::async_runtime::spawn_blocking(move || {
+        let bytes = std::fs::read(&path)?;
+        Ok(STANDARD.encode(bytes))
+    })
+    .await
+    .map_err(|e| AppError::Other(e.to_string()))?
+}
